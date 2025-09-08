@@ -1,10 +1,10 @@
+#este ejercicio esta siendo realizado nuevamente 
+hemisferio = input("¿En qué hemisferio estás? (N/S): ").upper() #pido el hemisferio
+mes = int(input("¿En qué mes estás? (1-12): ")) #pido el mes
+dia = int(input("¿Qué día del mes es? (1-31): ")) #pido el dia
 
-hemisferio = input("¿En qué hemisferio estás? (N/S): ").upper()
-mes = int(input("¿En qué mes estás? (1-12): "))
-dia = int(input("¿Qué día del mes es? (1-31): "))
 
-
-fecha = mes * 100 + dia
+fecha = mes * 100 + dia  #transformo los numeros dados en numeros que pueda usar
 
 if hemisferio == 'N':
     if (fecha >= 1221 or fecha <= 320):

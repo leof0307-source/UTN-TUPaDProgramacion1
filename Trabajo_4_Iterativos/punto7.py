@@ -6,3 +6,4 @@ if numero >0:
         print(sumatoria)
 else:
     print("ingrese un numero entero positivo")
+    
