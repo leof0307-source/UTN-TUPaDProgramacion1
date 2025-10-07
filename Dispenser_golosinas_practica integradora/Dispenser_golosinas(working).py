@@ -22,7 +22,6 @@ empleados = {
     "1500":"Gastón Garcia "
     }
 clavesTecnico=("admin","CCCDDD","2020")
-
 golosinas_pedidas=[]
 
 while encendida:
