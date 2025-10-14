@@ -1,0 +1,3 @@
+nombre;apellido;legajo;notapromedioJuan;P�rez;53365;8
+Mar�a;L�pez;55654;10
+Pablo;G�mez;58999;6
