@@ -1,4 +1,0 @@
-durazno,1.000,120
-manzana,900,130
-banana,800,100
-sandia,8.000,40

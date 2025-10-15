@@ -10,14 +10,18 @@ def validarnumero(numero):
 def agregardiccionario(alumnos):
     with open("alumnosynotas.txt","r") as archivo:
         for linea in archivo:
-            partes=linea.strip().split(",")
-            nombre=partes[0]
-            apellido=partes[1]
-            legajo=partes[2]
-            nota=partes[3]
+            linea = linea.strip()
+            if linea == "":    # si la línea está vacía, la saltamos
+                continue                  #revisar este bloque con el de borradores antes del parcial
+            if len(partes) < 4:  # si faltan datos, la saltamos también
+                continue
+            nombre = partes[0]
+            apellido = partes[1]
+            legajo = partes[2]
+            nota = partes[3]
             valor = (f"{nombre},{apellido},{nota}")
-            clave=legajo
-            alumnos[clave]=valor
+            clave = legajo
+            alumnos[clave] = valor
     return alumnos
 
 def agregaralumno(alumnos):
@@ -39,7 +43,7 @@ def agregaralumno(alumnos):
 
     while True:
         legajo = input("Ingrese el legajo: ")
-        if not validarnumero(legajo):
+        if not validarnumero(legajo) and len(legajo) != 5:
             print("el legajo debe ser numérico.")
             continue
         if legajo in alumnos:
@@ -49,20 +53,27 @@ def agregaralumno(alumnos):
 
     while True:
         nota = input("engrese la nota con punto si es que se requiere: ")
-        if not validarnumero(nota):
+        if not validarnumero(nota) and nota>10:
             print("la nota debe ser numérica.")
             continue
         break
+    aux = (f"{nombre},{apellido},{legajo},{nota}\n")
+    existe = validar_existe_alumno(aux)
 
-    aux=(f"{nombre},{apellido},{legajo},{nota}\n")
-    existe=validar_existe_alumno(aux)
     if existe:
+        with open("alumnosynotas.txt", "r") as archivo:
+            contenido = archivo.read().strip()
+
         with open("alumnosynotas.txt", "a") as archivo:
-            archivo.write(f"{nombre},{apellido},{legajo},{nota}\n")
-            agregardiccionario(alumnos)
-            return alumnos
+            if contenido != "":                          #esto parece raro pero si python recive "" lo tomara como un False
+                archivo.write("\n")                       # aca solo hago un salto para que en el txt no se junte la info
+            archivo.write(f"{nombre},{apellido},{legajo},{nota}")
+
+        agregardiccionario(alumnos)
+        print("el alumno se agrego pe")
+        return alumnos
     else:
-        print("el alumno no se agrego")
+        print("el alumno no se agrego porque ya existe")
 
 def validar_existe_alumno(aux):
     with open("alumnosynotas.txt", "r") as archivo:
@@ -75,11 +86,12 @@ def validar_existe_alumno(aux):
 def leerarchivo():
     with open("alumnosynotas.txt", "r") as archivo:
         contenido = archivo.read().strip()
-
+        print (contenido)
     if not contenido:
         print("el archivo está vacío.")
 
-def dar_aprovados():
+def dar_aprobados():
+    partes=[]
     with open("alumnosynotas.txt","r") as archivo:
         for linea in archivo:
             partes=linea.strip().split(",")
@@ -94,15 +106,10 @@ def dar_aprovados():
                 pass
 
 
-
-
-partes=[]
-alumnos={}
-
-
-####################
+#####################
 #codigo principal pe
 #####################
+
 partes = []
 alumnos = {}
 
@@ -117,11 +124,12 @@ except FileNotFoundError:
 
 bandera = True
 while bandera:
-    print("\n--- MENÚ ---")
+    print("\n--- menu ---")
     print("1. agregar alumno")
     print("2. mostrar alumnos")
     print("3. generar lista de aprobados")
-    print("4. salir")
+    print("4. ver lista de aprobados")
+    print("5. salir")
 
     opcion = input("Ingrese una opción: ")
 
@@ -132,9 +140,17 @@ while bandera:
         leerarchivo()
 
     elif opcion == "3":
-        dar_aprovados()
+        dar_aprobados()
 
     elif opcion == "4":
+       with open("aprobados.txt","r") as archivo:
+        contenido = archivo.read().strip()
+        if contenido == "":                                         #repasar esta parte para el parcial
+            print("El archivo de aprobados está vacío.")
+        else:
+            print(contenido)
+
+    elif opcion == "5":
         print("saliendoooooo")
         bandera = False
 

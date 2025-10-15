@@ -1,3 +1,0 @@
-lapices,1.500,20
-Blocks,8.000,10
-resaltadores,2.000,30
