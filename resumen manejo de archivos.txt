@@ -1,0 +1,13 @@
+| Acción                 | Código más usado                    |
+| ---------------------- | ----------------------------------- |
+| Abrir archivo          | `open("archivo.txt", "r")`          |
+| Leer todo              | `f.read()`                          |
+| Leer una línea         | `f.readline()`                      |
+| Leer todas las líneas  | `f.readlines()`                     |
+| Escribir una línea     | `f.write("texto")`                  |
+| Escribir varias líneas | `f.writelines(lista)`               |
+| Leer CSV               | `linea.split(",")` o `csv.reader()` |
+| Escribir CSV           | `csv.writer()`                      |
+| Cerrar archivo         | `f.close()`                         |
+| Leer y escribir        | `open("archivo.txt", "r+")`         |
+readlines sirve para leer todo y agregarlo a una lista 
