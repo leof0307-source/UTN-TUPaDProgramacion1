@@ -12,7 +12,7 @@ def agregardiccionario(alumnos):
         for linea in archivo:
             linea = linea.strip()
             if linea == "":    # si la línea está vacía, la saltamos
-                continue                  #revisar este bloque con el de borradores antes del parcial
+                continue        #revisar este bloque con el de borradores antes del parcial
             if len(partes) < 4:  # si faltan datos, la saltamos también
                 continue
             nombre = partes[0]
