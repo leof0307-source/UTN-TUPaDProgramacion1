@@ -1,0 +1,67 @@
+| Aspecto                   | `.TXT`                                                                     | `.CSV`                                                                       |
+| ------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Formato**               | Texto libre, vos elegís cómo separar los datos (comas, tabulaciones, etc.) | Estándar de “valores separados por comas”, usado por Excel y otros programas |
+| **Lectura/escritura**     | Usás `open()` y `split(",")` manualmente                                   | Usás el módulo `csv`, que maneja las filas y comas automáticamente           |
+| **Seguridad de datos**    | Puede fallar si hay comas dentro de los textos                             | El módulo `csv` escapa correctamente las comas                               |
+| **Legibilidad en código** | Tenés que hacer más pasos para dividir datos                               | `csv.reader` y `csv.writer` lo hacen fácil y limpio                          |
+| **Compatibilidad**        | Solo sirve para Python (a menos que lo edites a mano)                      | Compatible con Excel, Google Sheets, bases de datos, etc.                    |
+| **Nivel de uso**          | Más “manual”, ideal para aprender                                          | Más “profesional”, pero igual de simple si entendés listas                   |
+import csv
+
+🧠 Machete Python – Cosas no tan básicas
+
+📁 MANEJO DE ARCHIVOS
+----------------------
+- with open("archivo.txt", "r") as archivo: abre y cierra el archivo automáticamente.
+- Modos: "r" leer, "w" escribir (borra lo anterior), "a" agregar.
+- archivo.read() → lee todo.
+- archivo.write() → escribe (sin salto de línea).
+- .strip() → quita espacios y saltos de línea.
+
+🔄 ESTRUCTURAS DE DATOS
+------------------------
+- Diccionarios: pares clave:valor → alumnos["123"] = "Juan,Perez,8"
+- if clave in diccionario → verifica existencia.
+- Listas: partes = linea.split(",") separa por comas.
+
+🧩 FUNCIONES
+-------------
+- def nombre_funcion(param): define una función.
+- return valor → devuelve un resultado.
+- Variables dentro de una función son locales.
+- Una función puede llamar a otra.
+
+⚠️ MANEJO DE ERRORES
+---------------------
+- try / except captura errores sin cerrar el programa.
+- except ValueError: para errores de conversión.
+- except FileNotFoundError: si el archivo no existe.
+
+🧮 VALIDACIONES
+----------------
+- .isalpha(): solo letras.
+- .isdigit(): solo números.
+- len(texto): cantidad de caracteres.
+- if not condicion → invierte el resultado.
+- continue → pasa a la siguiente iteración.
+- break → corta el bucle.
+
+🧾 CONVERSIÓN DE TIPOS
+------------------------
+- int(x) → entero.
+- float(x) → decimal.
+- str(x) → texto.
+- f"{var}" → inserta variables dentro del texto.
+
+🧮 OPERADORES
+--------------
+- and / or / not → lógicos.
+- ==, !=, >=, <= → comparaciones.
+- pass → no hace nada (placeholder).
+
+🧱 EXTRAS
+----------
+- Python usa indentación (espacios) para definir bloques.
+- Variables globales necesitan 'global' para modificarse dentro de funciones.
+- Comentarios: # o triple comillas ("""docstring""")
+- Estructura: funciones arriba, menú principal al final.

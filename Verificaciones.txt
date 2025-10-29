@@ -1,0 +1,193 @@
+
+____________________________________________VERIFICACIONES GENERALES_________________________________________________
+consejo:si queres que cuando de error vuelba a repetir esa linea hace cada verificacion en en un bloque separado con un while con iteracion infinita-
+si se cumple usas un break o mejor podes usar una variable bandera paque el profe no te diga nada malo (break esta visto como una mala practica)
+# Verifica que el valor ingresado sea numérico
+try:
+    int(nombre_variable)
+    return True
+except ValueError:
+    print("el legajo no es numérico ingrese datos correctos")
+    return False
+
+
+# Si la línea está vacía o incompleta, la salta
+if nombre_variable == "":
+    continue
+if len(nombre_variable) < 4:
+    continue
+
+# Verifica que la variable contenga solo letras
+if not nombre_variable.isalpha():
+    print(" solo debe contener letras.")
+    continue
+
+# Verifica que sea numérico, tenga longitud x y no esté duplicado
+if not validarnumero(nombre_variable) and len(nombre_variable) != x:
+    print(" debe ser numérico.")
+    continue
+if nombre_variable in nombre_diccionario:
+    print("eso ya existe.")
+    continue
+
+# Verifica que el valor ingresado sea numérico
+try:
+    int(nombre_variable)
+    return True
+except ValueError:
+    print("el legajo no es numérico, ingrese datos correctos")
+    return False
+___________________________________________________ARCHIVOS_____________________________________________________________________
+-----------------------------------------------------TXT
+# --- Cargar datos desde alumnosynotas.txt ---
+with open("alumnosynotas.txt", "r") as archivo:
+    for linea in archivo:
+        linea = linea.strip()
+        if linea == "":
+            continue
+        partes = linea.split(",")
+        if len(partes) < 4:
+            continue
+        nombre = partes[0]
+        apellido = partes[1]
+        legajo = partes[2]
+        nota = partes[3]
+        valor = f"{nombre},{apellido},{nota}"
+        clave = legajo
+        nombre_diccionario[clave] = valor
+
+# --- Validar existencia de alumno en alumnosynotas.txt ---
+with open("alumnosynotas.txt", "r") as archivo:
+    for linea in archivo:
+        if linea.strip() == nombre_variable.strip():
+            print("este alumno ya existe")
+            return False
+
+# --- Escribir alumno nuevo en alumnosynotas.txt ---
+with open("alumnosynotas.txt", "r") as archivo:
+    contenido = archivo.read().strip()
+
+with open("alumnosynotas.txt", "a") as archivo:
+    if contenido != "":
+        archivo.write("\n")
+    archivo.write(f"{nombre},{apellido},{legajo},{nota}")
+
+# --- Leer y mostrar archivo alumnosynotas.txt ---
+with open("alumnosynotas.txt", "r") as archivo:
+    contenido = archivo.read().strip()
+    print(contenido)
+if not contenido:
+    print("el archivo está vacío.")
+
+# --- Generar lista de aprobados en aprobados.txt ---
+with open("alumnosynotas.txt", "r") as archivo:
+    for linea in archivo:
+        partes = linea.strip().split(",")
+        nombre = partes[0]
+        apellido = partes[1]
+        legajo = partes[2]
+        nota = partes[3]
+        if float(nota) >= 6:
+            with open("aprobados.txt", "a") as archivo_aprobados:
+                archivo_aprobados.write(f"{nombre},{apellido},{legajo},{nota}\n")
+
+# --- Ver archivo de aprobados ---
+with open("aprobados.txt", "r") as archivo:
+    contenido = archivo.read().strip()
+    if contenido == "":
+        print("El archivo de aprobados está vacío.")
+    else:
+        print(contenido)
+
+# --- Verificar existencia de alumnosynotas.txt ---
+try:
+    with open("alumnosynotas.txt", "r") as f:
+        print("El archivo existe.")
+except FileNotFoundError:
+    print("El archivo NO existe. Creando uno nuevo...")
+    open("alumnosynotas.txt", "w").close()
+
+
+
+-------------------------------------------------------------------CSV
+#RECORRER EL ARCHIVO
+with open("alumnosynotas.csv", "r") as archivo:
+    lector = csv.reader(archivo)
+    for fila in lector:
+        print(fila)
+        nombre = fila[0]
+        apellido = fila[1]
+        legajo = fila[2]
+        nota = fila[3]
+        #aca se hace la parte de los numeros si es que queres guardar sus partes
+
+import csv
+
+# --- Cargar datos desde alumnosynotas.csv ---
+with open("alumnosynotas.csv", "r", newline="") as archivo:
+    lector = csv.reader(archivo)
+    for fila in lector:
+        if not fila:
+            continue
+        if len(fila) < 4:
+            continue
+        nombre = fila[0]
+        apellido = fila[1]
+        legajo = fila[2]
+        nota = fila[3]
+        valor = f"{nombre},{apellido},{nota}"
+        clave = legajo
+        nombre_diccionario[clave] = valor
+
+# --- Validar existencia de alumno en alumnosynotas.csv ---
+with open("alumnosynotas.csv", "r", newline="") as archivo:
+    lector = csv.reader(archivo)
+    for fila in lector:
+        if fila == [nombre, apellido, legajo, nota]:
+            print("este alumno ya existe")
+            return False
+
+# --- Escribir alumno nuevo en alumnosynotas.csv ---
+with open("alumnosynotas.csv", "a", newline="") as archivo:
+    escritor = csv.writer(archivo)
+    escritor.writerow([nombre, apellido, legajo, nota])
+
+# --- Leer y mostrar archivo alumnosynotas.csv ---
+with open("alumnosynotas.csv", "r", newline="") as archivo:
+    lector = csv.reader(archivo)
+    filas = list(lector)
+    if not filas:
+        print("el archivo está vacío.")
+    else:
+        for fila in filas:
+            print(",".join(fila))
+
+# --- Generar lista de aprobados en aprobados.csv ---
+with open("alumnosynotas.csv", "r", newline="") as archivo:
+    lector = csv.reader(archivo)
+    with open("aprobados.csv", "a", newline="") as archivo_aprobados:
+        escritor = csv.writer(archivo_aprobados)
+        for fila in lector:
+            if not fila:
+                continue
+            nota = float(fila[3])
+            if nota >= 6:
+                escritor.writerow(fila)
+
+# --- Ver archivo de aprobados ---
+with open("aprobados.csv", "r", newline="") as archivo:
+    lector = csv.reader(archivo)
+    filas = list(lector)
+    if not filas:
+        print("El archivo de aprobados está vacío.")
+    else:
+        for fila in filas:
+            print(",".join(fila))
+
+# --- Verificar existencia de alumnosynotas.csv ---
+import os
+if not os.path.exists("alumnosynotas.csv"):
+    print("El archivo NO existe. Creando uno nuevo...")
+    open("alumnosynotas.csv", "w", newline="").close()
+else:
+    print("El archivo existe.")
