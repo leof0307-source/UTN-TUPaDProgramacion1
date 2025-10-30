@@ -2,6 +2,16 @@
 #diccionario donde:
 #• Las capitales sean las claves.
 #• Los países sean los valores.
-t = (1, 2, 3)
+paises = {
+    "Argentina": "Buenos Aires",
+    "Chile": "Santiago",
+    "Uruguay": "Montevideo"
+}
 
-print(t[1])
+capitales = {}
+
+for pais in paises:
+    capital = paises[pais]
+    capitales[capital] = pais
+
+print(capitales)
