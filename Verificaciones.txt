@@ -38,7 +38,7 @@ except ValueError:
     print("el legajo no es numérico, ingrese datos correctos")
     return False
 ___________________________________________________ARCHIVOS_____________________________________________________________________
------------------------------------------------------TXT
+-----------------------------------------------------TXT----------------------------------------------------------------------
 # --- Cargar datos desde alumnosynotas.txt ---
 with open("alumnosynotas.txt", "r") as archivo:
     for linea in archivo:
@@ -109,7 +109,7 @@ except FileNotFoundError:
 
 
 
--------------------------------------------------------------------CSV
+-------------------------------------------------------------------CSV-------------------------------------------------------------
 #RECORRER EL ARCHIVO
 with open("alumnosynotas.csv", "r") as archivo:
     lector = csv.reader(archivo)

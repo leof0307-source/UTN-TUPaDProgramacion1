@@ -11,3 +11,33 @@
 | Cerrar archivo         | `f.close()`                         |
 | Leer y escribir        | `open("archivo.txt", "r+")`         |
 readlines sirve para leer todo y agregarlo a una lista 
+def revisar_saltos():
+    with open("paises.csv", "r", encoding="utf-8") as archivo:
+        lineas = archivo.readlines()  # lee todas las filas
+        for i, linea in enumerate(lineas):
+            # Si la línea no termina con salto de línea, lo avisamos
+            if not linea.endswith("\n"):
+                print(f"La fila {i+1} no tiene salto de línea.")
+                
+    # Ahora podemos "arreglar" agregando \n donde falta
+    with open("paises.csv", "w", encoding="utf-8") as archivo:
+        for linea in lineas:
+            if not linea.endswith("\n"):
+                linea = linea + "\n"
+            archivo.write(linea)
+
+    print("Se revisaron y corrigieron los saltos de línea.")
+
+def revisar_saltos_txt():
+    with open("datos.txt", "r", encoding="utf-8") as archivo:
+        lineas = archivo.readlines()
+
+    for i in range(len(lineas)):
+        if not lineas[i].endswith("\n"):
+            print(f"La fila {i+1} no tiene salto de línea.")
+            lineas[i] += "\n"  # agregamos el salto de línea
+
+    with open("datos.txt", "w", encoding="utf-8") as archivo:
+        archivo.writelines(lineas)
+
+    print("Se revisaron y corrigieron los saltos de línea.")
