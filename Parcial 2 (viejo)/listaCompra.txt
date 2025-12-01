@@ -1,0 +1,3 @@
+OrdenCompra: 1 | Fecha: 20/11/2025 | Total: 4018.00
+  - Codigo: 997 | Cantidad: 2.0 | Subtotal: 4018.00
+
