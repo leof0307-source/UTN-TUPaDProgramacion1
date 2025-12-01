@@ -24,6 +24,7 @@ def Menu(articulosDataBase,facturasArmadas,veces):
             generarArchivo(facturasArmadas)
         elif eleccion=="4":
             print("saliendoo")
+            break
         else:
             print("introduzca una opcion valida")
             continue
@@ -63,7 +64,7 @@ def mostrar_productos(articulosdatabase):
 def CrearFactura(articulosDataBase,facturasArmadas,veces):
     mostrar_productos(articulosDataBase)
     fechaHoy = date.today()
-    facturaM=factura(fechaHoy,veces,[])
+    facturaM=factura(fechaHoy,veces,0,[])
 
     while True:
         while True:
@@ -83,7 +84,7 @@ def CrearFactura(articulosDataBase,facturasArmadas,veces):
         detalle=dertallefaactura(cant,articulosDataBase[cod],articulosDataBase[cod].precioVenta)
         facturaM.agregarDetalle(detalle)
         eleccion=input("ingrese si desea agregar otro detalle s/cualquier letra: ")
-        eleccion.lower
+        eleccion=eleccion.lower
         if eleccion=="s":
             print("iniciando de nuevo...")
             continue
@@ -91,13 +92,6 @@ def CrearFactura(articulosDataBase,facturasArmadas,veces):
             print("volviendo al menu...")
             facturasArmadas[veces]=facturaM #vital importancia que se ejecute
             break
-
-
-
-
-
-
-
 
 """c- Generar Archivo Factura por numero 
 - Solicitar al usuario que ingrese un numero de factura; buscar la factura por su número en 

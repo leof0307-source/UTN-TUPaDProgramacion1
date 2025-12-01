@@ -8,4 +8,4 @@ class articulo:
         self.denominacion=denominacion
         self.rubro=rubro
         self.marca=marca
-        precioVenta=int(precioVenta)
+        self.precioVenta=int(precioVenta)

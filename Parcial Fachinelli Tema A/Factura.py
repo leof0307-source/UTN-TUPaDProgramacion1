@@ -7,10 +7,10 @@ class factura:
         self.dia=dia
         self.numero=numero
         self.total=total
-        self.listadetalles=[]
+        self.listadetalles=listadetalles
 
     def agregarDetalle(self,detalle):
         self.listadetalles.append(detalle)
-        self.total=+ detalle.precioVenta
+        self.total =+ detalle.precioVenta   #error importante, 
     
         
